@@ -53,7 +53,7 @@ folderChangeCheck (){
             start=$(date +%s%N)
             echo "$emoji change spotted in $label folder"
             folderCleanup "$default/*" "$destination/*"
-            cp -r $folder/* $destination > /dev/null 2> /dev/null
+            cp -r $folder/* $destination > $LOGFILE 2> $LOGFILE
             
             end=$(date +%s%N)
             dur_n=$(($end-$start))
@@ -78,11 +78,22 @@ listen (){
 ######################################################
 
 # resetting the content of the deploy folder
-rm -rf $DEPLOY/* 
+LOGFILE=.logs/out.log
+echo "🔥 Wellcome to the hot-reloaded Wordpress developer environment"
+sleep .4
 
-cp -r $DEFAULT deploy/ > /dev/null 2> /dev/null
-cp -r $PLUGINS/* deploy/wp-content/plugins > /dev/null 2> /dev/null
-cp -r $THEMES/* deploy/wp-content/themes > /dev/null 2> /dev/null
+echo -n "🧹 Cleaning up..."
+
+mkdir .logs > /dev/null 2> /dev/null
+rm -rf $DEPLOY/* > $LOGFILE 2> $LOGFILE
+rm $DEPLOY/.empty > $LOGFILE 2> $LOGFILE
+cp -r $DEFAULT deploy/ > $LOGFILE 2> $LOGFILE
+cp -r $PLUGINS/* deploy/wp-content/plugins > $LOGFILE 2> $LOGFILE
+cp -r $THEMES/* deploy/wp-content/themes > $LOGFILE 2> $LOGFILE
+echo " Done"
+
+echo "🐳 It's Docker time"
+sleep .4
 
 # starting docker
 docker-compose -f compose.yml up -d
