@@ -18,4 +18,4 @@ Eventually if this gets actually used I will optimize it.
 
 ## Usage
 Download the folder and just execute ./start.sh, it will pull the required docker image and build the environoment by itself.
-Once it's up and running open **http://localhost:6666/** and finish the Wordpress installation.
+Once it's up and running open **http://localhost:666/** and finish the Wordpress installation.
