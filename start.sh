@@ -80,8 +80,10 @@ listen (){
 # resetting the content of the deploy folder
 LOGFILE=.logs/out.log
 echo "🔥 Wellcome to the hot-reloaded Wordpress developer environment"
+
 sleep .4
 
+echo 
 echo -n "🧹 Cleaning up..."
 
 mkdir .logs > /dev/null 2> /dev/null
@@ -93,11 +95,13 @@ cp -r $THEMES/* deploy/wp-content/themes > $LOGFILE 2> $LOGFILE
 echo " Done"
 
 echo "🐳 It's Docker time"
+echo
 sleep .4
 
 # starting docker
 docker-compose -f compose.yml up -d
 
 # listening for changed is the .wpdev folders
+echo
 echo "🎧 Listening for file changes"
 listen
