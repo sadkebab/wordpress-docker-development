@@ -50,10 +50,15 @@ folderChangeCheck (){
     checksum=`find $folder -type f -exec $MD5 {} \;`
     if [[ ${checksums[$folder]} != $checksum ]] ; then           
         if [ -n "${checksums[$folder]}" ]; then
+            start=$(date +%s%N)
             echo "$emoji change spotted in $label folder"
             folderCleanup "$default/*" "$destination/*"
             cp -r $folder/* $destination > /dev/null 2> /dev/null
-            echo "✅ $label updated"
+            
+            end=$(date +%s%N)
+            dur_n=$(($end-$start))
+            dur_m=$(($dur_n/1000000))
+            echo "✅ $label updated in $dur_m ms"
         fi
         checksums[$folder]=$checksum
     fi
