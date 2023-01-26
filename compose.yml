@@ -6,11 +6,11 @@ services:
     image: wordpress
     restart: always
     ports:
-      - 666:80
+      - ${PORT:-666}:80
     environment:
       WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: wp_user
-      WORDPRESS_DB_PASSWORD: astagfirullah21!
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
       WORDPRESS_DB_NAME: wp
     volumes:
       - wordpress:/var/www/html
@@ -21,8 +21,8 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: wp
-      MYSQL_USER: wp_user
-      MYSQL_PASSWORD: astagfirullah21!
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
       - db:/var/lib/mysql

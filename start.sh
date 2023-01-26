@@ -2,11 +2,12 @@
 # Variables
 ######################################################
 
+export $(grep -v '^#' .env | xargs) #loads variables from .env
+
 PLUGINS=plugins
 THEMES=themes
 DEFAULT=default/wp-content
 DEPLOY=deploy/wp-content
-MD5=md5sum
 
 ######################################################
 # Functions 
@@ -102,6 +103,7 @@ sleep .4
 docker-compose -f compose.yml up -d
 
 # listening for changed is the .wpdev folders
-echo
+echo 
+echo "🏃 WordPress is running at http://localhost:${PORT}/"
 echo "🎧 Listening for file changes"
 listen

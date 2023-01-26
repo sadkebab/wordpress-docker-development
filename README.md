@@ -12,7 +12,7 @@ Builds a docker container with Wordpress and MySQL and automatically mounts the 
 
 ## Compatibility and performance
 * The script was built and tested on WSL2 so I assume it should work on most linux distros.
-* Currently it uses the command 'md5sum' that should not work on macOS, but in theory you can make it run by changing 'md5sum' with 'md5' in the MD5 variable on top of the **start.sh** file.
+* Currently it uses the command 'md5sum' that should not work on macOS, but in theory you can make it run by changing 'md5sum' with 'md5' in the MD5 variable in the **.env** file.
 * At the moment this tool is at its infancy so it works in a very brutal way without any optimization that could reduce execution times and disk operations with big file structures inside a plugin or a theme.
 Eventually if this gets actually used I will optimize it.
 
