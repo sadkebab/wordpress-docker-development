@@ -10,6 +10,11 @@ And since modern problems require modern solutions, I thought it would be nice t
 ## How it works
 Builds a docker container with Wordpress and MySQL and automatically mounts the content of the "plugins" and "themes" folder every time a change happens inside them (kinda like Vite's hot reload) on the running container.
 
+## How To Use
+* Clone this repository
+* rm -rf .git
+* ./start.sh
+
 ## Compatibility and performance
 * The script was built and tested on WSL2 so I assume it should work on most linux distros.
 * Currently it uses the command 'md5sum' that should not work on macOS, but in theory you can make it run by changing 'md5sum' with 'md5' in the MD5 variable in the **.env** file.
